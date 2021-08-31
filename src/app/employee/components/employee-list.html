@@ -1,0 +1,68 @@
+
+<div class="d-flex">
+
+  <div class="col-md-6">
+    <table class="table ">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">LastName</th>
+          <th scope="col">Gender</th>
+          <th scope="col">Actions</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employees$ | async ">
+          <td>{{ employee.firstName }} {{ employee.lastName }}</td>
+          
+          <td>{{ employee.gender }}</td>
+          <td>{{employee.salary}}</td>
+          
+          
+          <td>
+            <button (click)="showUpdateForm(employee)" class="btn btn-primary" style="margin: 5px">Update</button>
+            <button (click)="deleteEmployee(employee.id)" class="btn btn-danger" style="margin: 5px">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div *ngIf="isUpdateActivated" class="col-md m-5" style="margin-top: 50px">
+    <h4>Update Employee</h4>
+    <form (ngSubmit)="updateEmployee(updateForm)" #updateForm="ngForm">
+        <div class="form-group">
+          <label for="name">FirstName</label>
+          <input
+          type="text"
+            id="firstName"
+            name="firstName"
+            class="form-control"
+            required
+            [(ngModel)]="employeeToBeUpdated.firstName"
+            style="width: 400px"/>
+          </div>
+          <div class="form-group">
+            <label for="name">Gender</label>
+            <select class="form-control"  [(ngModel)]="employeeToBeUpdated.gender" ngModel style="width: 400px;" required id="gender" name="gender" > 
+              <option class="form-control" value="Male"> Male</option>
+              <option class="form-control" value="Female">Female</option>
+        
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="side">Salary</label>
+            <input
+            type="text"
+            id="salary"
+            name="salary"
+            class="form-control"
+            required
+            [(ngModel)]="employeeToBeUpdated.salary"
+            style="width: 400px"/>
+          </div>
+          <button [disabled]="updateForm.invalid" class="btn btn-primary" type="submit">Update</button>
+        </form>
+      </div>
+    </div>

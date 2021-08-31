@@ -1,0 +1,33 @@
+<form (ngSubmit)="onSubmit(createForm)" #createForm="ngForm">
+  <div class="form-group">
+    <label for="name">First Name</label>
+    <input
+      type="text"
+      id="firstName"
+      name="firstName"
+      class="form-control"
+      ngModel
+      required
+      style="width: 400px"/>
+  </div>
+  <div class="form-group">
+    <label for="name">Gender</label>
+    <select class="form-control" ngModel style="width: 400px;" required id="gender" name="gender" > 
+      <option class="form-control"> Male</option>
+      <option class="form-control">Female</option>
+
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="side">Salary</label>
+    <input
+      type="text"
+      id="salary"
+      name="salary"
+      class="form-control"
+      ngModel
+      required
+      style="width: 400px"/>
+  </div>
+  <button [disabled]="createForm.invalid" class="btn btn-primary" type="submit">Create</button>
+</form>
